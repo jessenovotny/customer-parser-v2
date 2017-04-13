@@ -58,37 +58,36 @@ class CsvParser
 	end
 
 	def self.find_parents customer, customers
-		# last_name = customer.last_name.split('-')
-		parent = customers.detect{|c| c.age > customer.age && c.email == customer.email }
-		if parent
+		if parent = customers.detect{|c| c.age > customer.age && c.email == customer.email }
 			parent.children << customer 
 			customer.child = true
 		end
 	end
 
 	def self.generate_rows customers
-		customers = customers.select{|c| !c.child}
 		rows = []
 		customers.each do |c|
-			children = c.children.map{|child| [child.first_name, child.birthday]}
-			row = [c.last_name, c.first_name, c.birthday, children].flatten
-			rows << row
+			unless c.child # select only parents
+				children = c.children.map{|child| [child.first_name, child.birthday]}
+				row = [c.last_name, c.first_name, c.birthday, children].flatten 
+				rows << row
+			end
 		end
 		rows
 	end
 
-	def self.create_csv new_filename, data
+	def self.create_csv new_filename, customers
 		headers = ["Last name", "First name", "Birthday", "Kid 1 First name", "Kid 1 Birthday", "Kid 2 First name", "Kid 2 Birthday", "Kid 3 First name", "Kid 3 Birthday"]
 		CSV.open(new_filename, 'w') do |csv|
 			csv << headers
 			print "Creating New CSV\n"
 			counter = 1
-			data.each do |row|
+			customers.each do |row|
 				print "#{counter}... "
 				csv.puts row
 				counter += 1
 			end
-			print "\nFINISHED!"
+			print "\nFINISHED!\n"
 		end
 	end
 
