@@ -19,7 +19,7 @@ Source CSV file shall be located in root of this directory.
 
 Now, all you need to do is run
 ```
-./CSVParser "customers-raw.csv" "<optional_new_filename>" 
+./CSVParser "customers-test.csv" "<optional_new_filename>" 
 ```
 
 And the script will create a new file in the root directory named by the value provided as a second argument in the rake task or simply "parsed_customers-raw.csv" if no optional argument is provided.
