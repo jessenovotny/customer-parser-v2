@@ -22,9 +22,9 @@ Now, all you need to do is run
 ./CSVParser "customers-test.csv" "<optional_new_filename>" 
 ```
 
-And the script will create a new file in the root directory named by the value provided as a second argument in the rake task or simply "parsed_customers-raw.csv" if no optional argument is provided.
+And the script will create a new file in the root directory named by the value provided as a second argument in the rake task or simply "parsed-customers-test.csv" if no optional argument is provided.
 
-Note: Tests were performed with data provided in the challenge description. If another file is to be parsed, it's headers should be adjusted to match that of the sample data located in `lib/asstes/customers-raw.csv`.
+Note: Tests were performed with data provided in the challenge description. If another file is to be parsed, it's headers should be adjusted to match that of the sample data in `customers-test.csv`.
 
 
 
