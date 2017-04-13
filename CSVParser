@@ -4,7 +4,7 @@ require 'csv'
 require 'pry'
 
 class Customer
-	attr_accessor :children, :child, :first_name, :last_name, :birthday, :cust_key, :age, :email
+	attr_accessor :children, :child, :first_name, :last_name, :birthday, :age, :email
 
 	def initialize
 		@children = []
@@ -34,8 +34,6 @@ class CsvParser
 			counter += 1
 			row.each do |attribute, value|
 				case attribute
-				when "Cust Key"
-					customer.cust_key = value
 				when "Last Name"
 					customer.last_name = value.capitalize
 				when "First Name"
