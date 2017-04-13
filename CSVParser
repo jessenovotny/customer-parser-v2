@@ -7,7 +7,6 @@ class Customer
 	attr_accessor :children, :child, :first_name, :last_name, :birthday, :cust_key, :age, :email
 
 	def initialize
-		super
 		@children = []
 		@child = false
 	end
@@ -17,8 +16,7 @@ end
 class CsvParser
 
 	def self.parse original_filename, new_filename=nil
-		new_filename = new_filename || "parsed_#{original_filename}"
-		file_path = "lib/assets/#{original_filename}"
+		new_filename = new_filename || "parsed-#{original_filename}"
 		headers = [nil, "Cust Key", nil, "Last Name", nil, "First Name", nil, nil, "Birth Date", nil, "Age", nil, "Email Address"]
 		csv = CSV.read(original_filename, headers:headers)
 		customers = generate_customers(csv)
@@ -29,7 +27,7 @@ class CsvParser
 	def self.generate_customers customers_csv
 		customers = []
 		counter = 1
-		print "Parsing CSV\n"
+		puts "Parsing CSV"
 		customers_csv[6..-1].each do |row|
 			customer = Customer.new
 			print "#{counter}... "
@@ -75,7 +73,7 @@ class CsvParser
 		headers = ["Last name", "First name", "Birthday", "Kid 1 First name", "Kid 1 Birthday", "Kid 2 First name", "Kid 2 Birthday", "Kid 3 First name", "Kid 3 Birthday"]
 		CSV.open(new_filename, 'w') do |csv|
 			csv << headers
-			print "Creating New CSV\n"
+			puts "Creating New CSV"
 			counter = 1
 			customers.each do |row|
 				print "#{counter}... "
